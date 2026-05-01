@@ -15,23 +15,23 @@ declare(strict_types = 1);
  * @author Sacha Telgenhof <me at sachatelgenhof dot com>
  */
 
-namespace Yasumi\tests\Australia\Queensland;
+namespace Yasumi\tests\Australia\NorthernTerritory;
 
 use Yasumi\Holiday;
 use Yasumi\tests\HolidayTestCase;
 
 /**
- * Class for testing Labour Day in Queensland (Australia)..
+ * Class for testing Easter Sunday in Northern Territory (Australia).
  */
-class LabourDayTest extends QueenslandBaseTestCase implements HolidayTestCase
+class EasterSundayTest extends NorthernTerritoryBaseTestCase implements HolidayTestCase
 {
     /**
      * The name of the holiday.
      */
-    public const HOLIDAY = 'labourDay';
+    public const HOLIDAY = 'easter';
 
     /**
-     * Tests Labour Day.
+     * Tests Easter Sunday.
      *
      * @param int    $year     the year for which the holiday defined in this test needs to be tested
      * @param string $expected the expected date
@@ -52,26 +52,22 @@ class LabourDayTest extends QueenslandBaseTestCase implements HolidayTestCase
     /**
      * Returns a list of test dates.
      *
-     * @return array<int, array{int, string}> list of test dates for the holiday defined in this test
+     * @return array<array> list of test dates for the holiday defined in this test
+     *
+     * @throws \Exception
      */
     public static function HolidayDataProvider(): array
     {
-        return [
-            [2010, '2010-05-03'],
-            [2011, '2011-05-02'],
-            [2012, '2012-05-07'],
-            [2013, '2013-10-07'],
-            [2014, '2014-10-06'],
-            [2015, '2015-10-05'],
-            [2016, '2016-05-02'],
-            [2017, '2017-05-01'],
-            [2018, '2018-05-07'],
-            [2019, '2019-05-06'],
-            [2020, '2020-05-04'],
-            [2024, '2024-05-06'],
-            [2025, '2025-05-05'],
-            [2026, '2026-05-04'],
-        ];
+        $data = [];
+
+        for ($y = 0; $y < 50; ++$y) {
+            $year = static::generateRandomYear();
+            $date = static::computeEaster($year, self::TIMEZONE);
+
+            $data[] = [$year, $date->format('Y-m-d')];
+        }
+
+        return $data;
     }
 
     /**
@@ -84,8 +80,8 @@ class LabourDayTest extends QueenslandBaseTestCase implements HolidayTestCase
         $this->assertTranslatedHolidayName(
             $this->region,
             self::HOLIDAY,
-            static::generateRandomYear(1990),
-            [self::LOCALE => 'Labour Day']
+            static::generateRandomYear(),
+            [self::LOCALE => 'Easter Sunday']
         );
     }
 
@@ -96,6 +92,6 @@ class LabourDayTest extends QueenslandBaseTestCase implements HolidayTestCase
      */
     public function testHolidayType(): void
     {
-        $this->assertHolidayType($this->region, self::HOLIDAY, static::generateRandomYear(1990), Holiday::TYPE_OFFICIAL);
+        $this->assertHolidayType($this->region, self::HOLIDAY, static::generateRandomYear(), Holiday::TYPE_OFFICIAL);
     }
 }

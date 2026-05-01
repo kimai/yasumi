@@ -54,13 +54,22 @@ class SouthAustraliaTest extends SouthAustraliaBaseTestCase implements ProviderT
             'australiaDay',
             'anzacDay',
             'easterSaturday',
-            'queensBirthday',
+            'monarchsBirthday',
             'labourDay',
             'adelaideCup',
         ];
         if (2022 === $this->year) {
             $expectedHolidays[] = 'nationalDayOfMourning';
         }
+
+        if ($this->year >= 2024) {
+            $expectedHolidays[] = 'easter';
+        }
+
+        if (2026 === $this->year) {
+            $expectedHolidays[] = 'substituteHoliday:proclamationDay';
+        }
+
         $this->assertDefinedHolidays($expectedHolidays, $this->region, $this->year, Holiday::TYPE_OFFICIAL);
     }
 

@@ -18,28 +18,22 @@ declare(strict_types = 1);
 namespace Yasumi\tests\Australia\WesternAustralia;
 
 use Yasumi\Holiday;
-use Yasumi\tests\Australia\MonarchsBirthdayTransitionTestTrait;
 use Yasumi\tests\HolidayTestCase;
 
 /**
- * Class for testing Monarch's Birthday in Western Australia (Australia)..
+ * Class for testing ANZAC Day Monday substitute in Western Australia (Australia).
+ *
+ * When ANZAC Day (April 25) falls on a Saturday or Sunday, the following Monday is a public holiday.
  */
-class QueensBirthdayTest extends WesternAustraliaBaseTestCase implements HolidayTestCase
+class AnzacDayMondayTest extends WesternAustraliaBaseTestCase implements HolidayTestCase
 {
-    use MonarchsBirthdayTransitionTestTrait;
-
     /**
      * The name of the holiday.
      */
-    public const HOLIDAY = 'monarchsBirthday';
+    public const HOLIDAY = 'anzacDayMonday';
 
     /**
-     * The year in which the holiday was first established.
-     */
-    public const ESTABLISHMENT_YEAR = 1950;
-
-    /**
-     * Tests Monarch's Birthday.
+     * Tests ANZAC Day Monday.
      *
      * @param int    $year     the year for which the holiday defined in this test needs to be tested
      * @param string $expected the expected date
@@ -60,29 +54,28 @@ class QueensBirthdayTest extends WesternAustraliaBaseTestCase implements Holiday
     /**
      * Returns a list of test dates.
      *
-     * @return array<int, array{int, string}> list of test dates for the holiday defined in this test
+     * @return array<array> list of test dates for the holiday defined in this test
      */
     public static function HolidayDataProvider(): array
     {
         return [
-            [2010, '2010-09-27'],
-            [2011, '2011-10-28'],
-            [2012, '2012-10-01'],
-            [2013, '2013-09-30'],
-            [2014, '2014-09-29'],
-            [2015, '2015-09-28'],
-            [2016, '2016-09-26'],
-            [2017, '2017-09-25'],
-            [2018, '2018-09-24'],
-            [2019, '2019-09-30'],
-            [2020, '2020-09-28'],
-            [2021, '2021-09-27'],
-            [2022, '2022-09-26'],
-            [2023, '2023-09-25'],
-            [2024, '2024-09-23'],
-            [2025, '2025-09-29'],
-            [2026, '2026-09-28'],
+            [2015, '2015-04-27'], // April 25 = Saturday → Monday 27th
+            [2020, '2020-04-27'], // April 25 = Saturday → Monday 27th
+            [2021, '2021-04-26'], // April 25 = Sunday → Monday 26th
+            [2026, '2026-04-27'], // April 25 = Saturday → Monday 27th
         ];
+    }
+
+    /**
+     * Tests that ANZAC Day Monday is NOT a holiday when April 25 is a weekday.
+     *
+     * @throws \Exception
+     */
+    public function testNotHoliday(): void
+    {
+        $this->assertNotHoliday($this->region, self::HOLIDAY, 1931);
+        // 2022: April 25 = Monday (weekday, no substitute)
+        $this->assertNotHoliday($this->region, self::HOLIDAY, 2022);
     }
 
     /**
@@ -95,14 +88,8 @@ class QueensBirthdayTest extends WesternAustraliaBaseTestCase implements Holiday
         $this->assertTranslatedHolidayName(
             $this->region,
             self::HOLIDAY,
-            static::generateRandomYear(self::ESTABLISHMENT_YEAR, 2022),
-            [self::LOCALE => 'Queen’s Birthday']
-        );
-        $this->assertTranslatedHolidayName(
-            $this->region,
-            self::HOLIDAY,
-            static::generateRandomYear(2023),
-            [self::LOCALE => 'King’s Birthday']
+            2026,
+            [self::LOCALE => 'ANZAC Day']
         );
     }
 
@@ -113,11 +100,6 @@ class QueensBirthdayTest extends WesternAustraliaBaseTestCase implements Holiday
      */
     public function testHolidayType(): void
     {
-        $this->assertHolidayType(
-            $this->region,
-            self::HOLIDAY,
-            static::generateRandomYear(self::ESTABLISHMENT_YEAR, 2100),
-            Holiday::TYPE_OFFICIAL
-        );
+        $this->assertHolidayType($this->region, self::HOLIDAY, 2026, Holiday::TYPE_OFFICIAL);
     }
 }
