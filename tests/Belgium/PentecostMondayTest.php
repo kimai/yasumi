@@ -23,7 +23,7 @@ use Yasumi\tests\HolidayTestCase;
 /**
  * Class for testing Pentecost Monday in Belgium.
  */
-class pentecostMondayTest extends BelgiumBaseTestCase implements HolidayTestCase
+class PentecostMondayTest extends BelgiumBaseTestCase implements HolidayTestCase
 {
     /**
      * The name of the holiday to be tested.
