@@ -637,7 +637,7 @@ class Japan extends AbstractProvider
             $datesIterator->next();
 
             // Skip if next holiday is not set
-            if (null === $datesIterator->current()) {
+            if (! $datesIterator->current() instanceof Holiday) {
                 continue;
             }
 
