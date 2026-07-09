@@ -79,6 +79,7 @@ class Colombia extends AbstractProvider
         $this->addColumbusDay();
         $this->addAllSaintsDay();
         $this->addIndependenceOfCartagenaDay();
+        $this->addRosaryOfChiquinquiraDay();
     }
 
     /**
@@ -369,5 +370,30 @@ class Colombia extends AbstractProvider
             $date,
             $this->locale
         ));
+    }
+
+    /**
+     * Day of Our Lady of the Rosary of Chiquinquirá (Emiliani).
+     *
+     * "Día de la Virgen de Chiquinquirá". Established as a national holiday in 2026
+     * via Law (Ley de junio 2026). Observed on the first Monday on or after 9 July.
+     *
+     * @see https://en.wikipedia.org/wiki/Public_holidays_in_Colombia
+     * @see https://www.mininterior.gov.co/noticias/gobierno-sanciona-ley-que-convierte-el-9-de-julio-en-nuevo-festivo-nacional/
+     *
+     * @throws \Exception
+     */
+    protected function addRosaryOfChiquinquiraDay(): void
+    {
+        if ($this->year >= 2026) {
+            $date = $this->nextMonday(new \DateTime("{$this->year}-07-09", DateTimeZoneFactory::getDateTimeZone($this->timezone)));
+
+            $this->addHoliday(new Holiday(
+                'rosaryOfChiquinquiraDay',
+                ['es' => 'Día de la Virgen de Chiquinquirá', 'en' => 'Day of Our Lady of the Rosary of Chiquinquirá'],
+                $date,
+                $this->locale
+            ));
+        }
     }
 }

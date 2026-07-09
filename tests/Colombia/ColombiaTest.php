@@ -71,6 +71,10 @@ class ColombiaTest extends ColombiaBaseTestCase implements ProviderTestCase
             $holidays[] = 'battleOfBoyacaDay';
         }
 
+        if ($this->year >= 2026) {
+            $holidays[] = 'rosaryOfChiquinquiraDay';
+        }
+
         $this->assertDefinedHolidays($holidays, self::REGION, $this->year, Holiday::TYPE_OFFICIAL);
     }
 

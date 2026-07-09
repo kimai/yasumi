@@ -50,6 +50,10 @@
     <testsuite name="Bulgaria">
       <directory>./tests/Bulgaria</directory>
     </testsuite>
+    <!-- Test Suite for holidays in Colombia -->
+    <testsuite name="Colombia">
+      <directory>./tests/Colombia</directory>
+    </testsuite>
     <!-- Test Suite for holidays in Canada -->
     <testsuite name="Canada">
       <directory>./tests/Canada</directory>
