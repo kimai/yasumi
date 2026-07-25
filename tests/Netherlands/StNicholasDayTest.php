@@ -21,37 +21,37 @@ use Yasumi\Holiday;
 use Yasumi\tests\HolidayTestCase;
 
 /**
- * Class for testing Valentines Day in the Netherlands.
+ * Class for testing st Nicholas Day in the Netherlands.
  */
-class ValentinesDayTest extends NetherlandsBaseTestCase implements HolidayTestCase
+class StNicholasDayTest extends NetherlandsBaseTestCase implements HolidayTestCase
 {
     /**
      * The name of the holiday.
      */
-    public const HOLIDAY = 'valentinesDay';
+    public const HOLIDAY = 'stNicholasDay';
 
     /**
-     * Tests Valentines Day.
+     * Tests Sint Nicholas Day.
      *
-     * @param int       $year     the year for which Valentines Day needs to be tested
+     * @param int       $year     the year for which Sint Nicholas Day needs to be tested
      * @param \DateTime $expected the expected date
      */
-    #[\PHPUnit\Framework\Attributes\DataProvider('ValentinesDayDataProvider')]
-    public function testValentinesDay(int $year, \DateTimeInterface $expected): void
+    #[\PHPUnit\Framework\Attributes\DataProvider('stNicholasDayDataProvider')]
+    public function teststNicholasDay(int $year, \DateTimeInterface $expected): void
     {
         $this->assertHoliday(self::REGION, self::HOLIDAY, $year, $expected);
     }
 
     /**
-     * Returns a list of random test dates used for assertion of Valentines Day.
+     * Returns a list of random test dates used for assertion of Sint Nicholas Day.
      *
-     * @return array<array> list of test dates for Valentines Day
+     * @return array<array> list of test dates for Sint Nicholas Day
      *
      * @throws \Exception
      */
-    public static function ValentinesDayDataProvider(): array
+    public static function stNicholasDayDataProvider(): array
     {
-        return static::generateRandomDates(2, 14, self::TIMEZONE);
+        return static::generateRandomDates(12, 5, self::TIMEZONE);
     }
 
     /**
@@ -65,7 +65,7 @@ class ValentinesDayTest extends NetherlandsBaseTestCase implements HolidayTestCa
             self::REGION,
             self::HOLIDAY,
             static::generateRandomYear(),
-            [self::LOCALE => 'Valentijnsdag']
+            [self::LOCALE => 'Sinterklaas']
         );
     }
 
@@ -76,6 +76,6 @@ class ValentinesDayTest extends NetherlandsBaseTestCase implements HolidayTestCa
      */
     public function testHolidayType(): void
     {
-        $this->assertHolidayType(self::REGION, self::HOLIDAY, static::generateRandomYear(), Holiday::TYPE_OTHER);
+        $this->assertHolidayType(self::REGION, self::HOLIDAY, static::generateRandomYear(), Holiday::TYPE_OBSERVANCE);
     }
 }
