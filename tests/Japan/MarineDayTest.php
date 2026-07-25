@@ -20,11 +20,19 @@ namespace Yasumi\tests\Japan;
 use Yasumi\Holiday;
 use Yasumi\tests\HolidayTestCase;
 
-final class MarineDayTest extends JapanBaseTestCase implements HolidayTestCase
+/**
+ * Class for testing Marine Day in Japan.
+ */
+class MarineDayTest extends JapanBaseTestCase implements HolidayTestCase
 {
+    /**
+     * The name of the holiday.
+     */
     public const HOLIDAY = 'marineDay';
 
-    // The year in which the holiday was first established.
+    /**
+     * The year in which the holiday was first established.
+     */
     public const ESTABLISHMENT_YEAR = 1996;
 
     /**
