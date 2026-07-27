@@ -246,7 +246,7 @@ class SouthKorea extends AbstractProvider
         return [
             'https://en.wikipedia.org/wiki/Public_holidays_in_South_Korea',
             'https://ko.wikipedia.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%EC%9D%98_%EA%B3%B5%ED%9C%B4%EC%9D%BC',
-            'https://english.visitkorea.or.kr/enu/TRV/TV_ENG_1_1.jsp',
+            'https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140038',
         ];
     }
 
