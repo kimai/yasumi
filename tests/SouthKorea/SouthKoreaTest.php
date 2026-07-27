@@ -43,7 +43,7 @@ class SouthKoreaTest extends SouthKoreaBaseTestCase implements ProviderTestCase
         $this->assertNotCount(0, Yasumi::create(self::REGION, $year), "Missing holiday data for year {$year}.");
 
         // Assert years before 1949.
-        $year = self::generateRandomYear(null, self::ESTABLISHMENT_YEAR);
+        $year = self::generateRandomYear(null, self::ESTABLISHMENT_YEAR - 1);
         $this->assertCount(0, Yasumi::create(self::REGION, $year), 'Data available from 1949 onwards only.');
     }
 
