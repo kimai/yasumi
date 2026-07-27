@@ -20,6 +20,7 @@ followed by any architectural or technical changes.
 
 ### Fixes
 
+- _(SouthKorea)_ Correct buddhasBirthday translation year bound and update source URL
 - _(Argentina)_ Align code style with codebase conventions
 - Throw HolidayNotFoundException for unknown holiday keys ([#421](https://github.com/azuyalabs/yasumi/issues/421))
 - _(Japan)_ Correct year bounds and holiday name accuracy
@@ -28,6 +29,7 @@ followed by any architectural or technical changes.
 
 ### Refactor
 
+- _(South Korea)_ Add Labor Day and reinstate Constitution Day ([#413](https://github.com/azuyalabs/yasumi/issues/413))
 - _(Netherlands)_ Standardize test file naming
 - _(Japan)_ Code consistency improvements
 - Clean up SubstituteHoliday and fix Japan iterator null check
@@ -41,6 +43,7 @@ followed by any architectural or technical changes.
 
 ### Testing
 
+- _(SouthKorea)_ Correct test year range for pre-1949 assertion
 - _(Japan)_ Exclude 2019 from emperorsBirthday random year range
 
 ### Other
