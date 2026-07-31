@@ -24,8 +24,4 @@ use Yasumi\tests\Germany\GermanUnityDayTest as BaseGermanUnityDayTest;
  */
 class GermanUnityDay extends BaseGermanUnityDayTest
 {
-    public function __construct()
-    {
-        parent::__construct(static::class);
-    }
 }

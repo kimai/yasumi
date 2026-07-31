@@ -78,7 +78,7 @@ class BuddhasBirthdayTest extends SouthKoreaBaseTestCase implements HolidayTestC
      * @throws \Exception
      */
     #[\PHPUnit\Framework\Attributes\DataProvider('SubstituteHolidayDataProvider')]
-    public function testSubstituteHoliday($year, ?string $expected): void
+    public function testSubstituteHoliday(int $year, ?string $expected): void
     {
         if ($expected) {
             $this->assertSubstituteHoliday(

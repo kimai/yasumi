@@ -138,12 +138,10 @@ class ArmedForcesDayTest extends SouthKoreaBaseTestCase implements HolidayTestCa
     {
         for ($i = 0; $i < 20; ++$i) {
             $year = static::generateRandomYear(self::ESTABLISHMENT_YEAR);
-            switch ($year) {
-                case 1989: yield [$year, '1989-10-02'];
-                    break;
-                default: yield [$year, null];
-                    break;
-            }
+            match ($year) {
+                1989 => yield [$year, '1989-10-02'],
+                default => yield [$year, null],
+            };
         }
     }
 }
