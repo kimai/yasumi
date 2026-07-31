@@ -21,14 +21,11 @@ use Yasumi\Holiday;
 
 class SubstitutePolicy
 {
-    private int $year;
-
     /** @var array<string, list<int>> Substitute policy. */
     private array $policy = [];
 
-    public function __construct(int $year)
+    public function __construct(private readonly int $year)
     {
-        $this->year = $year;
         $this->init();
     }
 
@@ -39,10 +36,8 @@ class SubstitutePolicy
 
     /**
      * Determines if an alternative holiday should be added for this year's holidays based on the policy.
-     *
-     * @return bool
      */
-    public function shouldSubstitute(Holiday $holiday)
+    public function shouldSubstitute(Holiday $holiday): bool
     {
         return \in_array(
             (int) $holiday->format('w'),

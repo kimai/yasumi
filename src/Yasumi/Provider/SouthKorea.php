@@ -202,9 +202,9 @@ class SouthKorea extends AbstractProvider
         'christmasDay' => [],
     ];
 
-    private TranslationsInterface $translations;
+    private readonly TranslationsInterface $translations;
 
-    private SubstitutePolicy $policy;
+    private readonly SubstitutePolicy $policy;
 
     public function __construct(
         int $year,
