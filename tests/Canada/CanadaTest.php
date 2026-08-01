@@ -50,6 +50,7 @@ class CanadaTest extends CanadaBaseTestCase implements ProviderTestCase
             'goodFriday',
             'easterMonday',
             'canadaDay',
+            'victoriaDay',
             'labourDay',
             'remembranceDay',
             'thanksgivingDay',

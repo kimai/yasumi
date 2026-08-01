@@ -21,44 +21,50 @@ use Yasumi\Holiday;
 use Yasumi\tests\HolidayTestCase;
 
 /**
- * Class for testing Thanksgiving Day in Canada.
+ * Class for testing Victoria Day in Canada.
  */
-class ThanksgivingDayTest extends CanadaBaseTestCase implements HolidayTestCase
+class VictoriaDayTest extends CanadaBaseTestCase implements HolidayTestCase
 {
     /**
      * The name of the holiday.
      */
-    public const HOLIDAY = 'thanksgivingDay';
+    public const HOLIDAY = 'victoriaDay';
 
     /**
      * The year in which the holiday was first established.
      */
-    public const ESTABLISHMENT_YEAR = 1957;
+    public const ESTABLISHMENT_YEAR = 1845;
 
     /**
-     * Tests Thanksgiving Day on or after 1957. Thanksgiving Day has been celebrated on the second Monday of October
-     * since 1957, when the date was fixed by proclamation.
+     * Tests Victoria Day on or after 1845. Victoria Day is celebrated on the last Monday on or before May 24.
      *
      * @throws \Exception
      */
-    public function testThanksgivingDayOnAfter1957(): void
+    public function testVictoriaDayOnAfter1845(): void
     {
-        $year = static::generateRandomYear(self::ESTABLISHMENT_YEAR);
+        $year = 2019;
         $this->assertHoliday(
             self::REGION,
             self::HOLIDAY,
             $year,
-            new \DateTime("second monday of october {$year}", new \DateTimeZone(self::TIMEZONE))
+            $this->getVictoriaDayDate($year)
+        );
+
+        $year = 2024;
+        $this->assertHoliday(
+            self::REGION,
+            self::HOLIDAY,
+            $year,
+            $this->getVictoriaDayDate($year)
         );
     }
 
     /**
-     * Tests Thanksgiving Day before 1957. The second Monday of October was only fixed by proclamation in 1957; before
-     * that the date varied.
+     * Tests Victoria Day before 1845.
      *
      * @throws \Exception
      */
-    public function testThanksgivingDayBefore1957(): void
+    public function testVictoriaDayBefore1845(): void
     {
         $this->assertNotHoliday(
             self::REGION,
@@ -78,7 +84,7 @@ class ThanksgivingDayTest extends CanadaBaseTestCase implements HolidayTestCase
             self::REGION,
             self::HOLIDAY,
             static::generateRandomYear(self::ESTABLISHMENT_YEAR),
-            [self::LOCALE => 'Thanksgiving']
+            [self::LOCALE => 'Victoria Day']
         );
     }
 
@@ -95,5 +101,17 @@ class ThanksgivingDayTest extends CanadaBaseTestCase implements HolidayTestCase
             static::generateRandomYear(self::ESTABLISHMENT_YEAR),
             Holiday::TYPE_OFFICIAL
         );
+    }
+
+    /**
+     * Returns the expected Victoria Day date (the Monday on or before May 24) for the given year.
+     *
+     * @throws \Exception
+     */
+    private function getVictoriaDayDate(int $year): \DateTimeInterface
+    {
+        $date = new \DateTime("last monday front of {$year}-05-25", new \DateTimeZone(self::TIMEZONE));
+
+        return new \DateTime($date->format('Y-m-d'), new \DateTimeZone(self::TIMEZONE));
     }
 }
